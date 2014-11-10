@@ -27,9 +27,18 @@ RSpec.describe "Api Authentication", type: :api do
       end
     end
 
-    it 'allow to retrieve users with token access' do
-      get '/api/v1/player', {access_token: user.authentication_token, user_email: user.email}, format: :json
-      expect(last_response.status).to be(200)
+    context 'allow to retrieve users with token access' do
+      it 'with parammater' do
+        get '/api/v1/player', {access_token: user.authentication_token, user_email: user.email}, format: :json
+        expect(last_response.status).to be(200)
+      end
+
+      it 'with header' do
+        header 'X-User-Token', user.authentication_token
+        header 'X-User-Email', user.email
+        get '/api/v1/player', format: :json
+        expect(last_response.status).to be(200)
+      end
     end
   end
 
