@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable 
+         :confirmable
 
+  has_and_belongs_to_many :championships
   before_save :ensure_authentication_token
 
   def skip_confirmation!

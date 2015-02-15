@@ -11,21 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141109154731) do
+ActiveRecord::Schema.define(version: 20141111022545) do
 
   create_table "api_keys", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "champion_ship_and_metrics", force: true do |t|
-    t.integer "metric_id"
-    t.integer "championship_id"
-  end
-
-  create_table "champion_ship_and_users", force: true do |t|
-    t.integer "user_id"
-    t.integer "championship_id"
   end
 
   create_table "championships", force: true do |t|
@@ -36,9 +26,22 @@ ActiveRecord::Schema.define(version: 20141109154731) do
     t.datetime "draw_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "place"
+    t.integer  "outfield_players"
+    t.string   "type_teams"
   end
 
   add_index "championships", ["creator_id"], name: "index_championships_on_creator_id", using: :btree
+
+  create_table "championships_metrics", force: true do |t|
+    t.integer "championship_id"
+    t.integer "metric_id"
+  end
+
+  create_table "championships_users", force: true do |t|
+    t.integer "championship_id"
+    t.integer "user_id"
+  end
 
   create_table "classifications", force: true do |t|
     t.integer  "user_id"

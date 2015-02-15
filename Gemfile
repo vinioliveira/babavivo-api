@@ -34,4 +34,5 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'terminal-notifier'
   gem 'terminal-notifier-guard'
+  gem 'faker'
 end
